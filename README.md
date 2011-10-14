@@ -1,20 +1,63 @@
-# A Music Library for Database.com
+# A Music Library for Database.com and Heroku
 
 This small sample application is a music library with an album, artist and genre entity.
+It derives from a tutorial build for Java SDK. This adds support for Heroku, oAuth on Database.com.
 
 For more information on how to use the Java SDK, please read our documentation at http://forcedotcom.github.com/java-sdk/force-sdk-overview
 
-# Set the connection URL for Database.com
+# Pre-requisites:
+install git
+install Heroku 
+look at this workbook for help:
+http://www.salesforce.com/us/developer/docs/workbook_java_heroku/index.htm
 
-This application has a persistence unit called `forceDatabase`. The Database.com JPA provider will look for a connection URL in an environment variable called `FORCE_<UPPERCASE_PERSISTENCE_UNIT_NAME>_URL`; in this case, `FORCE_FORCEDATABASE_URL`.
+# Create a database.com account from browser:
+create a database.com account:
+for simplicity add IP range addresses 0.0.0.0 to 255.255.255.255 (to avoid token copy and paste)
+username: <username>
+password: <password>
 
-For Linux, set this variable by running the following command after replacing the user and password with your own username and password. Remember to append your security token to the password and to enclose the URL in quotes.
+# Clone the Maven project from terminal:
+clone existing github project:
+git clone git@github.com:sebastianocostanzo/JavaAndDatabase.com.git
+cd JavaAndDatabase.com
+# Create Heroku stack from terminal:
+heroku create --stack cedar
 
-    export FORCE_FORCEDATABASE_URL="force://login.salesforce.com;user=scott@acme.com;password=tigerVXoAIbgYSMOhSEVtcGxgt4mRP"
+Output :
+Creating young-sword-6889... done, stack is cedar
+http://young-sword-6889.herokuapp.com/ | git@heroku.com:young-sword-6889.git
+Git remote heroku added
 
-For Windows, set this variable by running the following command after replacing the user and password with your own username and password.
+# Take note of the app's name on heroku : something.herokuApp.com
+# Push code to heroku from command line:
+git push heroku master
 
-    set FORCE_FORCEDATABASE_URL=force://login.salesforce.com;user=scott@acme.com;password=tigerVXoAIbgYSMOhSEVtcGxgt4mRP
+# Setup Database.com for oAuth:
+Go back to database.com org in browser:
+create remote access on database.com
+Application: javaheroku (it's just a name)
+Callback url: https://something.herokuapp.com/_auth (the host is different)
+Save and click on click to reveal link
+Copy the consumer key: <consumer key> (long string)
+Copy the consumer secret: <consumer secret> (shorter number)
+
+# Setup SSL on heroku app:
+
+add the SSL add-on to your heroku app (needed for oauth) from command line:
+
+heroku addons:add ssl:piggyback
+
+# add the following heroku environment variables from the command line (replace the values copied above <consumer key>->oauth_key ; <consumer secret>->oauth_secret ; callback url ->redirect_uri) :
+
+heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=<username>&password=<password>&oauth_key=<consumer key>&oauth_secret=<consumer secret>&redirect_uri=https://something.herokuapp.com/_auth"
+
+heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>"
+	
+# start Heroku app from command line
+heroku open
+
+from the browser login with user credentials (don't need to be the same used in setup above) and allow
 
 
 Please read more documentation at http://forcedotcom.github.com/java-sdk/force-sdk-overview
