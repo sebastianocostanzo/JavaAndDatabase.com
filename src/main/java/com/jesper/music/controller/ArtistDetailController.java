@@ -40,8 +40,12 @@ public class ArtistDetailController {
 	}
 
 	@RequestMapping(value="/artist/{id}", method=RequestMethod.POST)
-	public String update(ModelAndView mv, @ModelAttribute Artist artist) {
-		return "redirect:/artist/"+musicService.saveArtist(artist).getId();
+	public ModelAndView update(ModelAndView mv, @ModelAttribute Artist artist) {
+		//return "redirect:/artist/"+musicService.saveArtist(artist).getId();
+		musicService.saveArtist(artist);
+		mv.addObject("list", musicService.getList("Artist",null));
+		mv.setViewName("artist_list");
+		return mv;
 	}
 	
 	@RequestMapping(value="/artist/{id}/albums", method=RequestMethod.GET)

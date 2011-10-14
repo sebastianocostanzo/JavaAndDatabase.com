@@ -39,8 +39,12 @@ public class GenreDetailController {
 	}
 
 	@RequestMapping(value="/genre/{id}", method=RequestMethod.POST)
-	public String update(ModelAndView mv, @ModelAttribute Genre genre) {
-		return "redirect:/genre/"+musicService.saveGenre(genre).getId();
+	public ModelAndView update(ModelAndView mv, @ModelAttribute Genre genre) {
+		//return "redirect:/genre/"+musicService.saveGenre(genre).getId();
+		musicService.saveGenre(genre);
+		mv.addObject("list", musicService.getList("Genre",null));
+		mv.setViewName("genre_list");
+		return mv;
 	}
 	
 }
