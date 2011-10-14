@@ -67,7 +67,7 @@ heroku addons:add ssl:piggyback
 
 # add the following heroku environment variables from the command line (replace the values copied above consumer_key; consumer_secret ; callback url ->redirect_uri) :
 
-heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=username&password=password&oauth_key=consumer_key&oauth_secret=consumer_secret>&redirect_uri=https://something.herokuapp.com/_auth"
+heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=username&password=password&oauth_key=consumer_key&oauth_secret=consumer_secret&redirect_uri=https://something.herokuapp.com/_auth"
 
 heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>"
 	
