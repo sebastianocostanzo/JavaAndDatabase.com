@@ -7,26 +7,38 @@ For more information on how to use the Java SDK, please read our documentation a
 
 # Pre-requisites:
 install git
+
 install Heroku 
+
 look at this workbook for help:
+
 http://www.salesforce.com/us/developer/docs/workbook_java_heroku/index.htm
 
 # Create a database.com account from browser:
 create a database.com account:
+
 for simplicity add IP range addresses 0.0.0.0 to 255.255.255.255 (to avoid token copy and paste)
-username: <username>
-password: <password>
+
+username: username
+
+password: password
 
 # Clone the Maven project from terminal:
 clone existing github project:
+
 git clone git@github.com:sebastianocostanzo/JavaAndDatabase.com.git
+
 cd JavaAndDatabase.com
+
 # Create Heroku stack from terminal:
 heroku create --stack cedar
 
 Output :
+
 Creating young-sword-6889... done, stack is cedar
+
 http://young-sword-6889.herokuapp.com/ | git@heroku.com:young-sword-6889.git
+
 Git remote heroku added
 
 # Take note of the app's name on heroku : something.herokuApp.com
@@ -35,29 +47,34 @@ git push heroku master
 
 # Setup Database.com for oAuth:
 Go back to database.com org in browser:
+
 create remote access on database.com
+
 Application: javaheroku (it's just a name)
+
 Callback url: https://something.herokuapp.com/_auth (the host is different)
+
 Save and click on click to reveal link
-Copy the consumer key: <consumer key> (long string)
-Copy the consumer secret: <consumer secret> (shorter number)
+
+Copy the consumer key: consumer_key (long string)
+
+Copy the consumer secret: consumer_secret (shorter number)
 
 # Setup SSL on heroku app:
-
 add the SSL add-on to your heroku app (needed for oauth) from command line:
 
 heroku addons:add ssl:piggyback
 
-# add the following heroku environment variables from the command line (replace the values copied above <consumer key>->oauth_key ; <consumer secret>->oauth_secret ; callback url ->redirect_uri) :
+# add the following heroku environment variables from the command line (replace the values copied above consumer_key; consumer_secret ; callback url ->redirect_uri) :
 
-heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=<username>&password=<password>&oauth_key=<consumer key>&oauth_secret=<consumer secret>&redirect_uri=https://something.herokuapp.com/_auth"
+heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=username&password=password&oauth_key=consumer_key&oauth_secret=consumer_secret>&redirect_uri=https://something.herokuapp.com/_auth"
 
 heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>"
 	
 # start Heroku app from command line
 heroku open
 
-from the browser login with user credentials (don't need to be the same used in setup above) and allow
+from the browser login with user credentials (don't need to be the same used in setup above) and click allow
 
 
 Please read more documentation at http://forcedotcom.github.com/java-sdk/force-sdk-overview
