@@ -19,10 +19,6 @@ create a database.com account:
 
 for simplicity add IP range addresses 0.0.0.0 to 255.255.255.255 (to avoid token copy and paste)
 
-username: username
-
-password: password
-
 # Clone the Maven project from terminal:
 clone existing github project:
 
@@ -65,11 +61,11 @@ add the SSL add-on to your heroku app (needed for oauth) from command line:
 
 heroku addons:add ssl:piggyback
 
-# add the following heroku environment variables from the command line (replace the values copied above consumer_key; consumer_secret ; callback url ->redirect_uri) :
+# add the following heroku environment variables from the command line (replace the values copied above consumer_key; consumer_secret) :
 
-heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?user=username&password=password&oauth_key=consumer_key&oauth_secret=consumer_secret&redirect_uri=https://something.herokuapp.com/_auth"
+heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?oauth_key=consumer_key&oauth_secret=consumer_secret"
 
-heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>"
+heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>" (this is needed to get object created via JPA)
 	
 # start Heroku app from command line
 heroku open
