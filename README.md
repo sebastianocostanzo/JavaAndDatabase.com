@@ -65,7 +65,7 @@ heroku addons:add ssl:piggyback
 
 heroku config:add FORCE_FORCEDATABASE_URL="force://login.database.com?oauth_key=consumer_key&oauth_secret=consumer_secret"
 
-heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>" (this is needed to get object created via JPA)
+heroku config:add CONNECTION_URL="force://login.salesforce.com?user=<username>&password=<password>" (this is needed to get objects created via JPA)
 	
 # start Heroku app from command line
 heroku open

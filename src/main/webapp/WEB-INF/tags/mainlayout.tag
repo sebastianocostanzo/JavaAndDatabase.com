@@ -5,26 +5,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Database.com Music Library</title>
+	<title>Database.com + Heroku + Java SDK Music Library</title>
 	<link href="${pageContext.request.contextPath}/resources/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div id="header"><div id="app_title">Music Library</div></div>
-	<form action="" method="get">
+
+	<div id="header"><div id="app_title">Database.com + Heroku + Java SDK Music Library</div></div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 		<div id="navigation">${breadcrumb}
-			<c:if test="${hidesearch==null}">
-				<div style="float:right; white-space: nowrap">
-					 JPQL Where caluse i.e. <code>o.name='a'</code><input size="40" type="text" name="q" value="${param.q}"/>
-					<input type="submit" value="Go"/>
-				</div>
-			</c:if>
+		
+			
+			
 		</div>
 	</form>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+	
 	<div id="content">
 	
 		<jsp:doBody/>
 	
 	</div>
-	<div id="footer"></div>
+	<div id="footer">
+	
+	
+	</div>
+
 </body>
 </html>

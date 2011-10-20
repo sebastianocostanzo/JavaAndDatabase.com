@@ -6,7 +6,17 @@
 
 <tags:mainlayout>
 
+
 	<jsp:attribute name="breadcrumb"><a href="..">Home</a> / <a href=".">Albums</a> / ${album.name}</jsp:attribute>
+
+		<jsp:attribute name="breadcrumb">
+			<table> 
+				<tr>
+					Chatter Feed: ${feeds}
+				</tr>
+			</table>
+		</jsp:attribute>
+	
 	<jsp:body>
 		<form:form commandName="album">
 		<table>
@@ -23,6 +33,11 @@
 				<td>Release Date:</td><td><form:input size="40" path="releaseDate"/></td>
 				<td>Date Format: yyyy-mm-dd</td>
 			</tr>
+			<tr>
+				<td>Comment:</td><td><form:input size="100" rows="6" path="comment"/></td>
+				
+			</tr>
+			
 		</table>
 		<p/>
 		<input type="submit" value="Save"/>
@@ -30,4 +45,8 @@
 		</form:form>
 	</jsp:body>
 	
+	
+	
 </tags:mainlayout>
+
+

@@ -20,6 +20,8 @@ public class Album {
     private Date createdDate;
     
     private String name;
+
+	private String comment;
     
     @DateTimeFormat(iso=ISO.DATE)
     private Date releaseDate;
@@ -47,6 +49,14 @@ public class Album {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Date getReleaseDate() {
